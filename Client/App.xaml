@@ -1,0 +1,83 @@
+﻿<Application x:Class="Client.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Client"
+             xmlns:vw="clr-namespace:Client.Views"
+             xmlns:vm="clr-namespace:Client.ViewModels"
+             xmlns:vmuv="clr-namespace:Client.ViewModels.UserViewModels"
+             xmlns:vmpv="clr-namespace:Client.ViewModels.PictureViewModels"
+             xmlns:vmev="clr-namespace:Client.ViewModels.EventViewModels"
+             xmlns:vmav="clr-namespace:Client.ViewModels.AlbumViewModels"
+             xmlns:vwuv="clr-namespace:Client.Views.UserView"
+             xmlns:vwpv="clr-namespace:Client.Views.PictureView"
+             xmlns:vwev="clr-namespace:Client.Views.EventView"
+             xmlns:vwav="clr-namespace:Client.Views.AlbumView"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Indigo.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <DataTemplate DataType="{x:Type vm:HomePageViewModel}">
+                <vw:HomePageUC/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vmuv:AddNewUserViewModel}">
+                <vwuv:AddNewUser/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vmuv:ModifyUserViewModel}">
+                <vwuv:ModifyUserUC/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:LoginViewModel}">
+                <vw:LoginUC/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vmpv:AddNewPhotoViewModel}">
+                <vwpv:AddNewPhoto/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vmpv:ModifyPhotoViewModel}">
+                <vwpv:ModifyPictureUC/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vmev:AddNewEventViewModel}">
+                <vwev:AddNewEventView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vmev:ModifyEventViewModel}">
+                <vwev:ModifyEventView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vmev:ShowEventViewModel}">
+                <vwev:AllEventsView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vmav:AddNewAlbumViewModel}">
+                <vwav:AddNewAlbum/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vmav:ModifyAlbumViewModel}">
+                <vwav:ModifyAlbumView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vmav:ShowAlbumViewModel}">
+                <vwav:AllAlbumsView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vmpv:AddPhotoAlbumViewModel}">
+                <vwpv:AddPhotoAlbumUC/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vmpv:DeletePhotoAlbumViewModel}">
+                <vwpv:DeletePhotoAlbumUC/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vmev:ConnectEventAlbumViewModel}">
+                <vwev:ConnectEventAlbumUC/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vmev:RemoveEventAlbumViewModel}">
+                <vwev:RemoveEventAlbumUC/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vmpv:ShowAlbumPicturesViewModel}">
+                <vwpv:ShowAlbumPicturesUC/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vmev:ShowEventAlbumsViewModel}">
+                <vwev:ShowEventAlbumsUC/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vmpv:RatePhotoViewModel}">
+                <vwpv:RatePhotoUC/>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

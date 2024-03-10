@@ -1,0 +1,96 @@
+﻿<UserControl x:Class="Client.Views.PictureView.ModifyPictureUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Client.Views.PictureView"
+             mc:Ignorable="d" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:converter="clr-namespace:Client.Helpers"
+             Name="ModifyPhotoUC"
+             d:DesignHeight="850" d:DesignWidth="450">
+    <UserControl.Resources>
+        <converter:MultiValueConverter x:Key="multiConverter"/>
+    </UserControl.Resources>
+    <Grid Background="#FF44325F">
+        <Grid Height="100" VerticalAlignment="Top" Background="White"></Grid>
+        <Rectangle Fill="#60447D" Height="600" Width="300" Margin="0,210,0,0">
+            <Rectangle.Clip>
+                <RectangleGeometry Rect="0 0 300 600" RadiusX="20" RadiusY="20"/>
+            </Rectangle.Clip>
+        </Rectangle>
+        <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" Margin="0,25,95,0">
+                <TextBlock Text="Jullie" Foreground="White" Width="100" Height="50" Margin="0,50,0,0" FontSize="20" FontFamily="Nirmala UI" HorizontalAlignment="Left" />
+                <Ellipse Height="150" Width="150" Stroke="White" StrokeThickness="3">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="profile.jpeg" Stretch="UniformToFill"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+            </StackPanel>
+            <TextBlock Text="Modify photo" Foreground="White" HorizontalAlignment="Center" FontSize="25" FontFamily="Nirmala UI" Margin="0,5" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="25,45,0,0">
+                <materialDesign:PackIcon Kind="IdentificationCard" Width="35" Height="45" VerticalAlignment="Center" Foreground="White"/>
+                <TextBox Name ="photoID" Text="{Binding Picture.PictureID, UpdateSourceTrigger=PropertyChanged}" Height="45" Width="220" Foreground="#878787" Background="White" BorderBrush="White" BorderThickness="1" Margin="20,0,0,0" FontSize="20" materialDesign:HintAssist.Hint="PhotoID" VerticalContentAlignment="Center" FontFamily="Nirmala UI" Padding="10,0,0,0">
+                    <TextBox.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="25,15,0,0">
+                <materialDesign:PackIcon Kind="Text" Width="35" Height="45" VerticalAlignment="Center" Foreground="White"/>
+                <TextBox Name ="photoName" Text="{Binding Picture.Name, UpdateSourceTrigger=PropertyChanged}" Height="45" Width="220" Foreground="#878787" Background="White" BorderBrush="White" BorderThickness="1" Margin="20,0,0,0" FontSize="20" materialDesign:HintAssist.Hint="Name" VerticalContentAlignment="Center" FontFamily="Nirmala UI" Padding="10,0,0,0">
+                    <TextBox.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="25,15,0,0">
+                <materialDesign:PackIcon Kind="CalendarRange" Width="35" Height="45" VerticalAlignment="Center" Foreground="White"/>
+                <DatePicker SelectedDate="{Binding Picture.Date, UpdateSourceTrigger=PropertyChanged}" Name="photoDate" Height="45" Width="220" Margin="20,0,0,0" Background="White"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="25,12,0,0">
+                <materialDesign:PackIcon Kind="CommentTextOutline" Width="35" Height="45" VerticalAlignment="Top" Foreground="White"/>
+                <TextBox Name ="photoTags" Text="{Binding Picture.Tags, UpdateSourceTrigger=PropertyChanged}" Height="100" Width="220" Foreground="#878787" Background="White" BorderBrush="White" BorderThickness="1" Margin="20,0,0,0" FontSize="20" materialDesign:HintAssist.Hint="Comments, Tags.." VerticalContentAlignment="Top" FontFamily="Nirmala UI" Padding="10,0,0,0">
+                    <TextBox.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="25,15,0,0">
+                <materialDesign:PackIcon Kind="Image" Width="35" Height="45" VerticalAlignment="Top" Foreground="White"/>
+                <StackPanel Orientation="Vertical">
+                    <Image Name="uploadedPic" Source="{Binding UploadedImage}"  Height="150" Width="150"  Margin="90,10,0,0" VerticalAlignment="Top"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Command="{Binding LoadImageCommand}" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Height="35" Width="70" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Margin="70,0,0,0">
+                            <materialDesign:PackIcon Kind="Upload" Height="35" Width="45"/>
+                        </Button>
+                        <TextBlock Text="Upload Photo" Foreground="White" FontFamily="Nirmala UI" FontSize="15" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10,25">
+                <Button Command="{Binding SubmitModifyPhotoCommand}" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Height="35" Width="70" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Margin="80,0,0,0">
+                    <materialDesign:PackIcon Kind="CheckCircle" Height="35" Width="35"/>
+                    <Button.CommandParameter>
+                        <MultiBinding Converter="{StaticResource multiConverter}">
+                            <Binding Path="Text" ElementName="photoName"/>
+                            <Binding Path="SelectedDate" ElementName="photoDate"/>
+                            <Binding Path="Text" ElementName="photoTags"/>
+                            <Binding Path="Source" ElementName="uploadedPic"/>
+                            <Binding ElementName="ModifyPhotoUC"/>
+                            <Binding Path="Text" ElementName="photoID"/>
+                        </MultiBinding>
+                    </Button.CommandParameter>
+                </Button>
+                <TextBlock Text="Submit" Foreground="White" VerticalAlignment="Center" FontSize="20" FontFamily="Nirmala UI"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

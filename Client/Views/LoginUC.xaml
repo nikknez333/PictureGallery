@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="Client.Views.LoginUC"
+             x:Name="LoginView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Client.Views"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:converter="clr-namespace:Client.Helpers"
+             Height="700" Width="620">
+    <UserControl.Resources>
+        <Style TargetType="Button" x:Key="ButtonStyle">
+            <Setter Property="Background" Value="#4C94A3"/>
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="7" Background="{TemplateBinding Background}" BorderThickness="3" BorderBrush="White">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="Foreground" Value="#4C94A3"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <converter:MultiValueConverter x:Key="multiValueConvert"/>
+        
+    </UserControl.Resources>
+    <Grid>
+        <Image Source="Images/Login/background.jpg" Stretch="None"></Image>
+
+        <Rectangle Height="420" Width="400" Fill="White" Opacity="0.3">
+            <Rectangle.Clip>
+                <RectangleGeometry Rect="0 0 400 420" RadiusX="20" RadiusY="20"/>
+            </Rectangle.Clip>
+        </Rectangle>
+        <StackPanel Orientation="Vertical">
+            <Ellipse Height="95" Width="95" VerticalAlignment="Top" Margin="75">
+                <Ellipse.Fill>
+                    <ImageBrush ImageSource="Images/Login/camLogoAdj.jpg"/>
+                </Ellipse.Fill>
+            </Ellipse>
+            <TextBlock Margin="-75" Text="Photo album" HorizontalAlignment="Center" FontSize="30" Foreground="#878787" FontFamily="Supra-NormalMezzo ☞" />
+            <TextBlock Margin="-45" Text="Service" HorizontalAlignment="Center" FontSize="25" Foreground="#878787" FontFamily="Supra-NormalMezzo ☞" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <materialDesign:PackIcon Kind="Account" Width="50" Height="75" VerticalAlignment="Center" Foreground="#878787"/>
+                <TextBox Name ="usrName" Text="{Binding User.Username, UpdateSourceTrigger=PropertyChanged}"  Height="60" Width="300" Foreground="#878787" Background="White" BorderBrush="White" BorderThickness="1" Margin="10" FontSize="24" materialDesign:HintAssist.Hint="Username" VerticalContentAlignment="Center" FontFamily="Supra-NormalMezzo ☞" Padding="10,0,0,0">
+                    <TextBox.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <materialDesign:PackIcon Kind="Lock" Height="75" Width="50" Foreground="#878787" VerticalAlignment="Center"/>
+                <TextBox Name="passw" Text="{Binding User.Password, UpdateSourceTrigger=PropertyChanged}" Height="60" Width="300" Foreground="#878787" Background="White" Margin="10" BorderBrush="White" BorderThickness="1" materialDesign:HintAssist.Hint="Password" FontSize="24" VerticalContentAlignment="Center" FontFamily="Supra-NormalMezzo ☞" Padding="10,0,0,0">
+                    <TextBox.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+            </StackPanel>
+            <Button Command="{Binding LoginCommand}" Style="{StaticResource ButtonStyle}" Content="Login" FontFamily="Arial" Height="60" Width="300" FontSize="25"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="50,20,0,0">
+                <Button.CommandParameter>
+                    <Binding ElementName="LoginView"/>
+                </Button.CommandParameter>
+            </Button>
+        </StackPanel>
+        <Separator Height="10" Width="400" Margin="0,500,0,0" Background="White"/>
+    </Grid>
+</UserControl>

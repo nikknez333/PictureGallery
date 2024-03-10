@@ -1,0 +1,92 @@
+﻿<UserControl x:Class="Client.Views.PictureView.RatePhotoUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:converter="clr-namespace:Client.Helpers"
+             Name="RatePhotoUserControl"
+             xmlns:local="clr-namespace:Client.Views.PictureView"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converter:MultiValueConverter x:Key="multiConverter"/>
+    </UserControl.Resources>
+    <Grid Background="#FF44325F">
+        <Rectangle Fill="#60447D" Height="320" Width="550" Margin="0,0,0,50">
+            <Rectangle.Clip>
+                <RectangleGeometry Rect="0 0 550 320" RadiusX="20" RadiusY="20"/>
+            </Rectangle.Clip>
+        </Rectangle>
+        <ListView Name="AllPicturesLW" ItemsSource="{Binding AllPictures, UpdateSourceTrigger=PropertyChanged}" Height="300"  Width="500" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,50" BorderBrush="White" BorderThickness="3" SelectionMode="Single">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="3"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <ItemContainerTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Vertical">
+                            <Image Source="{Binding Image}" Stretch="UniformToFill" Height="150" Width="150"/>
+                        </StackPanel>
+                    </StackPanel>
+                </ItemContainerTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackPanel Orientation="Horizontal"  VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="50,0,0,20" Width="250">
+            <Button Command="{Binding RatePhoto1Command}" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Width="35" Height="35" Foreground="White">
+                <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource multiConverter}">
+                        <Binding ElementName="AllPicturesLW" Path="SelectedItem"/>
+                        <Binding ElementName="RatePhotoUserControl"/>
+                    </MultiBinding>
+                </Button.CommandParameter>
+                <materialDesign:PackIcon Kind="Number1" Height="35" Width="35"/>
+            </Button>
+            <Button Command="{Binding RatePhoto2Command}" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Width="35" Height="35" Foreground="White">
+                <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource multiConverter}">
+                        <Binding ElementName="AllPicturesLW" Path="SelectedItem"/>
+                        <Binding ElementName="RatePhotoUserControl"/>
+                    </MultiBinding>
+                </Button.CommandParameter>
+                <materialDesign:PackIcon Kind="Number2" Height="35" Width="35"/>
+            </Button>
+            <Button Command="{Binding RatePhoto3Command}" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Width="35" Height="35" Foreground="White">
+                <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource multiConverter}">
+                        <Binding ElementName="AllPicturesLW" Path="SelectedItem"/>
+                        <Binding ElementName="RatePhotoUserControl"/>
+                    </MultiBinding>
+                </Button.CommandParameter>
+                <materialDesign:PackIcon Kind="Number3" Height="35" Width="35"/>
+            </Button>
+            <Button Command="{Binding RatePhoto4Command}" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Width="35" Height="35" Foreground="White">
+                <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource multiConverter}">
+                        <Binding ElementName="AllPicturesLW" Path="SelectedItem"/>
+                        <Binding ElementName="RatePhotoUserControl"/>
+                    </MultiBinding>
+                </Button.CommandParameter>
+                <materialDesign:PackIcon Kind="Number4" Height="35" Width="35"/>
+            </Button>
+            <Button Command="{Binding RatePhoto5Command}" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Width="35" Height="35" Foreground="White">
+                <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource multiConverter}">
+                        <Binding ElementName="AllPicturesLW" Path="SelectedItem"/>
+                        <Binding ElementName="RatePhotoUserControl"/>
+                    </MultiBinding>
+                </Button.CommandParameter>
+                <materialDesign:PackIcon Kind="Number5" Height="35" Width="35"/>
+            </Button>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Margin="0,0,0,0">
+            <Button Command="{Binding GoBackCommand}" CommandParameter="{Binding ElementName=RatePhotoUserControl}"  Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Width="35" Height="35" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,0,0,0">
+                <materialDesign:PackIcon Kind="KeyboardReturn" Height="35" Width="35"/>
+            </Button>
+            <TextBlock Text="Go Back" FontFamily="Nirmala UI" Foreground="White" FontSize="15" Width="70" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,126 @@
+﻿<UserControl x:Class="Client.Views.EventView.ConnectEventAlbumUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Client.Views.EventView"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             Name="ConnectEventAlbumUserControl"
+             xmlns:converter="clr-namespace:Client.Helpers"
+             mc:Ignorable="d" 
+             d:DesignHeight="1000" d:DesignWidth="700">
+    <UserControl.Resources>
+        <converter:MultiValueConverter x:Key="multiConverter"/>
+    </UserControl.Resources>
+    <Grid Background="#FF44325F">
+        <Grid Height="100" VerticalAlignment="Top" Background="White"></Grid>
+        <Rectangle Fill="#60447D" Height="700" Width="550" Margin="0,140,0,0">
+            <Rectangle.Clip>
+                <RectangleGeometry Rect="0 0 700 700" RadiusX="20" RadiusY="20"/>
+            </Rectangle.Clip>
+        </Rectangle>
+        <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" Margin="0,25,95,0">
+                <TextBlock Text="{Binding User.Name}" Foreground="White" Width="100" Height="50" Margin="0,50,0,0" FontSize="20" FontFamily="Nirmala UI" HorizontalAlignment="Left" />
+                <Ellipse Height="150" Width="150" Stroke="White" StrokeThickness="3">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="profile.jpeg" Stretch="UniformToFill"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="80,250,0,0" VerticalAlignment="Top">
+            <TextBlock Text="Album name" Foreground="White" Margin="20,0,0,0" FontFamily="Nirmala UI" FontSize="20" VerticalAlignment="Center"/>
+            <Separator  Foreground="White" Height="20" Width="20">
+                <Separator.LayoutTransform>
+                    <RotateTransform Angle="90" />
+                </Separator.LayoutTransform>
+            </Separator>
+            <TextBlock Text="Album date" Foreground="White" Margin="0,0,0,0" FontFamily="Nirmala UI" FontSize="20" VerticalAlignment="Center"/>
+            <Separator  Foreground="White" Height="20" Width="20">
+                <Separator.LayoutTransform>
+                    <RotateTransform Angle="90" />
+                </Separator.LayoutTransform>
+            </Separator>
+            <TextBlock Text="Is Album private" Foreground="White" Margin="0,0,0,0" FontFamily="Nirmala UI" FontSize="20" VerticalAlignment="Center"/>
+        </StackPanel>
+        <Separator Width="400" Foreground="White" Height="20" Margin="15,265,100,0" VerticalAlignment="Top"/>
+        <ListView Name="AllAlbumsListView" ItemsSource="{Binding MyAlbums, UpdateSourceTrigger=PropertyChanged}" Height="250"  Width="500" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,140" BorderBrush="White" BorderThickness="3" SelectionMode="Single">
+            <ListView.ItemTemplate>
+                <ItemContainerTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Name}" FontFamily="Nirmala UI" FontSize="15" Foreground="White"/>
+                        <Separator  Foreground="White" Height="20" Width="20" Margin="32,0,0,0">
+                            <Separator.LayoutTransform>
+                                <RotateTransform Angle="90" />
+                            </Separator.LayoutTransform>
+                        </Separator>
+                        <TextBlock Text="{Binding Date}" FontFamily="Nirmala UI" FontSize="15" Foreground="White" Margin="0,0,0,0"/>
+                        <Separator  Foreground="White" Height="20" Width="20" Margin="32,0,0,0">
+                            <Separator.LayoutTransform>
+                                <RotateTransform Angle="90" />
+                            </Separator.LayoutTransform>
+                        </Separator>
+                        <TextBlock Text="{Binding IsPrivate}" FontFamily="Nirmala UI" FontSize="15" Foreground="White" Margin="0,0,0,0"/>
+                    </StackPanel>
+                </ItemContainerTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackPanel Orientation="Horizontal" Margin="80,180,0,0" VerticalAlignment="Center">
+            <TextBlock Text="Event name" Foreground="White" Margin="20,0,0,0" FontFamily="Nirmala UI" FontSize="20" VerticalAlignment="Center"/>
+            <Separator  Foreground="White" Height="20" Width="20">
+                <Separator.LayoutTransform>
+                    <RotateTransform Angle="90" />
+                </Separator.LayoutTransform>
+            </Separator>
+            <TextBlock Text="Event date" Foreground="White" Margin="0,0,0,0" FontFamily="Nirmala UI" FontSize="20" VerticalAlignment="Center"/>
+            <Separator  Foreground="White" Height="20" Width="20">
+                <Separator.LayoutTransform>
+                    <RotateTransform Angle="90" />
+                </Separator.LayoutTransform>
+            </Separator>
+            <TextBlock Text="Event location" Foreground="White" Margin="0,0,0,0" FontFamily="Nirmala UI" FontSize="20" VerticalAlignment="Center"/>
+        </StackPanel>
+        <Separator Width="360" Foreground="White" Height="20" Margin="20,200,140,0" VerticalAlignment="Center"/>
+        <ListView Name="AllEventsListView" ItemsSource="{Binding MyEvents, UpdateSourceTrigger=PropertyChanged}" Height="250"  Width="500" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,120" BorderBrush="White" BorderThickness="3" SelectionMode="Single">
+            <ListView.ItemTemplate>
+                <ItemContainerTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Name}" FontFamily="Nirmala UI" FontSize="15" Foreground="White"/>
+                        <Separator  Foreground="White" Height="20" Width="20" Margin="32,0,0,0">
+                            <Separator.LayoutTransform>
+                                <RotateTransform Angle="90" />
+                            </Separator.LayoutTransform>
+                        </Separator>
+                        <TextBlock Text="{Binding Date}" FontFamily="Nirmala UI" FontSize="15" Foreground="White" Margin="0,0,0,0"/>
+                        <Separator  Foreground="White" Height="20" Width="20" Margin="32,0,0,0">
+                            <Separator.LayoutTransform>
+                                <RotateTransform Angle="90" />
+                            </Separator.LayoutTransform>
+                        </Separator>
+                        <TextBlock Text="{Binding Location}" FontFamily="Nirmala UI" FontSize="15" Foreground="White" Margin="0,0,0,0"/>
+                    </StackPanel>
+                </ItemContainerTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackPanel Orientation="Horizontal"  VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="70,0,0,20" Width="250">
+            <Button Command="{Binding ConnectAlbumEventCommand}"  Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Width="35" Height="35" Foreground="White">
+                <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource multiConverter}">
+                        <Binding ElementName="AllAlbumsListView" Path="SelectedItem"/>
+                        <Binding ElementName="AllEventsListView" Path="SelectedItem"/>
+                        <Binding ElementName="ConnectEventAlbumUserControl"/>
+                    </MultiBinding>
+                </Button.CommandParameter>
+                <materialDesign:PackIcon Kind="CalendarImport" Height="35" Width="35"/>
+            </Button>
+            <TextBlock Text="Connect album to event" FontFamily="Nirmala UI" Foreground="White" FontSize="15" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Center"/>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Margin="0,50,0,0">
+            <Button Command="{Binding GoBackCommand}" CommandParameter="{Binding ElementName=ConnectEventAlbumUserControl}"  Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Width="35" Height="35" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,100,0,0">
+                <materialDesign:PackIcon Kind="KeyboardReturn" Height="35" Width="35"/>
+            </Button>
+            <TextBlock Text="Go Back" FontFamily="Nirmala UI" Foreground="White" FontSize="15" Width="70" HorizontalAlignment="Left" Margin="20,0,0,0"/>
+        </StackPanel>
+    </Grid>
+</UserControl>
